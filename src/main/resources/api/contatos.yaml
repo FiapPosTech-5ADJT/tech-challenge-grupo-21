@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  title: Contatos API
+  version: 1.0.0
+  description: API para gerenciamento de contatos
+  contact:
+    name: Grupo 21
+    email: grupo21@fiap.com.br
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:8080/
+    description: Local server
+  - url: https://api.fiap.com.br/contatos
+    description: Production server
+tags:
+  - name: Contatos
+    description: Operações relativas a contatos
+paths:
+  /contatos:
+    get:
+      tags:
+        - Contatos
+      summary: Lista todos os contatos
+      operationId: listaContatos
+      responses:
+        "200":
+          description: Uma lista de contatos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Contato"
+    post:
+      tags:
+        - Contatos
+      summary: Criar um novo contato
+      operationId: criarContato
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CriarContato"
+      responses:
+        "201":
+          description: Contato Criado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contato"
+  /contatos/{contatoId}:
+    get:
+      tags:
+        - Contatos
+      summary: Obtem um contato por Id
+      operationId: obterContato
+      parameters:
+        - name: contatoId
+          in: path
+          description: Id do contato a ser retornado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Contato encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contato"
+        "404":
+          description: Contato não encontrado
+    put:
+      tags:
+        - Contatos
+      summary: Atualizar um contato
+      operationId: atualizarContato
+      parameters:
+        - name: contatoId
+          in: path
+          description: ID do contato a ser atualizado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AtualizaContato"
+      responses:
+        "200":
+          description: Contato atualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contato"
+        "404":
+          description: Contato não encontrado
+    delete:
+      tags:
+        - Contatos
+      summary: Deleta um contato
+      operationId: deletaContato
+      parameters:
+        - name: contatoId
+          in: path
+          description:  ID do contato a ser deletado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Contato deletado
+        "404":
+          description: Contato encontrado
+components:
+  schemas:
+    CriarContato:
+      type: object
+      properties:
+        telefone:
+          type: string
+          description: Telefone do contato
+          maxLength: 15
+          example: "(11) 98765-4321"
+        nome:
+          type: string
+          description: Nome do contato
+          maxLength: 100
+          example: "John Doe"
+        email:
+          type: string
+          description: Email do contato
+          maxLength: 100
+          example: "johndoe@example.com"
+    AtualizaContato:
+      type: object
+      properties:
+        telefone:
+          type: string
+          description: Telefone do contato
+          maxLength: 15
+          example: "(11) 98765-4321"
+        nome:
+          type: string
+          description: Nome do contato
+          maxLength: 100
+          example: "John Doe"
+        email:
+          type: string
+          description: Email do contato
+          maxLength: 100
+          example: "johndoe@example.com"
+    Contato:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID do contato
+          example: 123e4567-e89b-12d3-a456-426614174000
+        telefone:
+          type: string
+          description: Telefone do contato
+          maxLength: 15
+          example: "(11) 98765-4321"
+        nome:
+          type: string
+          description: Nome do contato
+          maxLength: 100
+          example: "John Doe"
+        email:
+          type: string
+          description: Email do contato
+          maxLength: 100
+          example: "johndoe@example.com"
+        createdAt:
+          type: string
+          format: date-time
+          description: Data e hora em que o contato foi criado
+          example: 2021-09-01T10:00:00
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data e hora em que o contato foi atualizado
+          example: 2021-09-01T10:00:00
+        deletedAt:
+          type: string
+          format: date-time
+          description: Data e hora em que o contato foi desativado
+          example: 2021-09-01T10:00:00

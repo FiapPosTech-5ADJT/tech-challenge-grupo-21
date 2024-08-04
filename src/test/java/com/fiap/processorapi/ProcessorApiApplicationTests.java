@@ -1,13 +1,13 @@
-package br.com.fiap.tech_challenge_1;
+package com.fiap.processorapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TechChallenge1ApplicationTests {
+class ProcessorApiApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+  @Test
+  void contextLoads() {
+  }
 
 }

@@ -1,0 +1,268 @@
+openapi: 3.0.3
+info:
+  title: Registros API
+  version: 1.0.0
+  description: API para gerenciamento de registros a serem reprocessados
+  contact:
+    name: Grupo 21
+    email: grupo21@fiap.com.br
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:8080/
+    description: Local server
+  - url: https://api.fiap.com.br/registros
+    description: Production server
+tags:
+  - name: Registros
+    description: Operações relativas a registros
+paths:
+  /registros:
+    get:
+      tags:
+        - Registros
+      summary: Lista todos os registros
+      operationId: listaRegistros
+      responses:
+        "200":
+          description: Uma lista de registros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Registro"
+    post:
+      tags:
+        - Registros
+      summary: Criar um novo registro
+      operationId: criarRegistro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CriarRegistro"
+      responses:
+        "201":
+          description: Registro Criado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registro"
+
+  /registros/{registroId}:
+    get:
+      tags:
+        - Registros
+      summary: Obtem um registro por Id
+      operationId: obterRegistro
+      parameters:
+        - name: registroId
+          in: path
+          description: Id do registro a ser retornado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Registro encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registro"
+        "404":
+          description: Registro não encontrado
+    put:
+      tags:
+        - Registros
+      summary: Atualizar um registro
+      operationId: atualizarRegistro
+      parameters:
+        - name: registroId
+          in: path
+          description: ID do registro a ser atualizado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AtualizaRegistro"
+      responses:
+        "200":
+          description: Registro atualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registro"
+        "404":
+          description: Registro não encontrado
+    delete:
+      tags:
+        - Registros
+      summary: Deleta um registro
+      operationId: deletaRegistro
+      parameters:
+        - name: registroId
+          in: path
+          description:  ID do registro a ser deletado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Registro deletado
+        "404":
+          description: Registro encontrado
+components:
+  schemas:
+    CriarRegistro:
+      type: object
+      properties:
+        id_credenciamento:
+          type: string
+          description: ID do credenciamento
+          maxLength: 40
+          example: d5b2a1e4e7c3e0f8e7a2
+        numero_documento:
+          type: integer
+          description: Número do documento
+          example: 123456
+        tipo_pessoa:
+          type: string
+          description: Tipo de pessoa (char)
+          maxLength: 1
+          example: F
+        payload_credenciamento:
+          type: string
+          description: Payload a ser reprocessado
+          maxLength: 1000
+          example: '{
+            "nome": "John Doe",
+            "ponto_comercial": "Mercado boa vista",
+            "proposta": "crédito sem nenhuma taxa",
+            "data": "12/12/2024"
+          }'
+        status:
+          type: string
+          description: Status (char)
+          maxLength: 10
+          example: Ativo
+        data_processamento:
+          type: string
+          format: date
+          description: Data de processamento
+          example: '2024-08-01'
+        num_tentativas:
+          type: integer
+          description: Número de tentativas
+          example: 3
+    AtualizaRegistro:
+      type: object
+      properties:
+        id_credenciamento:
+          type: string
+          description: ID do credenciamento
+          maxLength: 40
+          example: d5b2a1e4e7c3e0f8e7a2
+        numero_documento:
+          type: integer
+          description: Número do documento
+          example: 123456
+        tipo_pessoa:
+          type: string
+          description: Tipo de pessoa (char)
+          maxLength: 1
+          example: F
+        payload_credenciamento:
+          type: string
+          description: Payload a ser reprocessado
+          maxLength: 1000
+          example: '{
+            "nome": "John Doe",
+            "ponto_comercial": "Mercado boa vista",
+            "proposta": "crédito sem nenhuma taxa",
+            "data": "12/12/2024"
+          }'
+        status:
+          type: string
+          description: Status (char)
+          maxLength: 10
+          example: Ativo
+        data_processamento:
+          type: string
+          format: date
+          description: Data de processamento
+          example: '2024-08-01'
+        num_tentativas:
+          type: integer
+          description: Número de tentativas
+          example: 3
+    Registro:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the category
+          example: 123e4567-e89b-12d3-a456-426614174000
+        id_credenciamento:
+          type: string
+          description: ID do credenciamento
+          maxLength: 40
+          example: d5b2a1e4e7c3e0f8e7a2
+        numero_documento:
+          type: integer
+          description: Número do documento
+          example: 123456
+        tipo_pessoa:
+          type: string
+          description: Tipo de pessoa (char)
+          maxLength: 1
+          example: F
+        payload_credenciamento:
+          type: string
+          description: Payload a ser reprocessado
+          maxLength: 1000
+          example: '{
+            "nome": "John Doe",
+            "ponto_comercial": "Mercado boa vista",
+            "proposta": "crédito sem nenhuma taxa",
+            "data": "12/12/2024"
+          }'
+        status:
+          type: string
+          description: Status (char)
+          maxLength: 10
+          example: Ativo
+        data_processamento:
+          type: string
+          format: date
+          description: Data de processamento
+          example: '2024-08-01'
+        num_tentativas:
+          type: integer
+          description: Número de tentativas
+          example: 3
+        createdAt:
+          type: string
+          format: date-time
+          description: Data e hora em que o registro foi criado
+          example: 2021-09-01T10:00:00
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data e hora em que a registro foi atualizado
+          example: 2021-09-01T10:00:00
+        deletedAt:
+          type: string
+          format: date-time
+          description: Data e hora em que a registro foi desativado
+          example: 2021-09-01T10:00:00
