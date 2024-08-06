@@ -1,20 +1,12 @@
 package com.fiap.processorapi.application.repositories;
 
 import com.fiap.processorapi.application.domain.registro.Registro;
-import com.fiap.processorapi.application.domain.registro.RegistroId;
+import com.fiap.processorapi.application.enums.Status;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
-public interface RegistroRepository {
-
-      Registro create(Registro rgistro);
-
-      Registro update(Registro aRegistro);
-
-      Optional<Registro> findById(RegistroId anId);
-
-      List<Registro> findAll();
-
-      void deleteById(RegistroId anId);
+public interface RegistroRepository extends JpaRepository<Registro, UUID> {
+      List<Registro> findByStatus(Status status);
 }

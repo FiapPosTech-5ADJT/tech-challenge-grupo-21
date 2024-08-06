@@ -17,6 +17,7 @@ public class Registro {
   private String idCredenciamento;
   private String numeroDocumento;
   private String tipoPessoa;
+  @Enumerated(EnumType.ORDINAL)
   private Status status;
   private String payloadCredenciamento;
   private Instant dataProcessamento;
@@ -49,5 +50,93 @@ public class Registro {
 
   public void setStatusFromValue(int value) {
     this.status = Status.fromValue(value);
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public String getIdCredenciamento() {
+    return idCredenciamento;
+  }
+
+  public void setIdCredenciamento(String idCredenciamento) {
+    this.idCredenciamento = idCredenciamento;
+  }
+
+  public String getNumeroDocumento() {
+    return numeroDocumento;
+  }
+
+  public void setNumeroDocumento(String numeroDocumento) {
+    this.numeroDocumento = numeroDocumento;
+  }
+
+  public String getTipoPessoa() {
+    return tipoPessoa;
+  }
+
+  public void setTipoPessoa(String tipoPessoa) {
+    this.tipoPessoa = tipoPessoa;
+  }
+
+  public Status getStatus() {
+    return status;
+  }
+
+  public void setStatus(Status status) {
+    this.status = status;
+  }
+
+  public String getPayloadCredenciamento() {
+    return payloadCredenciamento;
+  }
+
+  public void setPayloadCredenciamento(String payloadCredenciamento) {
+    this.payloadCredenciamento = payloadCredenciamento;
+  }
+
+  public Instant getDataProcessamento() {
+    return dataProcessamento;
+  }
+
+  public void setDataProcessamento(Instant dataProcessamento) {
+    this.dataProcessamento = dataProcessamento;
+  }
+
+  public int getNumTentativas() {
+    return numTentativas;
+  }
+
+  public void setNumTentativas(int numTentativas) {
+    this.numTentativas = numTentativas;
+  }
+
+  public Instant getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public Instant getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(Instant updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+  public Instant getDeletedAt() {
+    return deletedAt;
+  }
+
+  public void setDeletedAt(Instant deletedAt) {
+    this.deletedAt = deletedAt;
   }
 }
