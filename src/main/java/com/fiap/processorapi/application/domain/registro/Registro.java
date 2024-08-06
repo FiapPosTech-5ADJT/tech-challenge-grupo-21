@@ -1,12 +1,19 @@
 package com.fiap.processorapi.application.domain.registro;
 
 import com.fiap.processorapi.application.enums.Status;
+import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity
+@Table(name = "registro")
 public class Registro {
-  private RegistroId id;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
   private String idCredenciamento;
   private String numeroDocumento;
   private String tipoPessoa;
@@ -18,7 +25,9 @@ public class Registro {
   private Instant updatedAt;
   private Instant deletedAt;
 
-  public Registro(final RegistroId id, final String idCredenciamento, final String numeroDocumento, final String tipoPessoa,
+  public Registro() {}
+
+  public Registro(final UUID id, final String idCredenciamento, final String numeroDocumento, final String tipoPessoa,
       final Status status, final String payloadCredenciamento, final Instant dataProcessamento, final int numTentativas,
       final Instant createdAt, final Instant updatedAt, final Instant deletedAt) {
     this.id = Objects.requireNonNull(id, "id cannot be null");
