@@ -144,22 +144,7 @@ components:
           type: string
           description: Payload a ser reprocessado
           maxLength: 1000
-          example: '{
-            "nome": "John Doe",
-            "ponto_comercial": "Mercado boa vista",
-            "proposta": "crédito sem nenhuma taxa",
-            "data": "12/12/2024"
-          }'
-        status:
-          type: string
-          description: Status (char)
-          maxLength: 10
-          example: Ativo
-        data_processamento:
-          type: string
-          format: date
-          description: Data de processamento
-          example: '2024-08-01'
+          example: "{}"
         num_tentativas:
           type: integer
           description: Número de tentativas
@@ -185,22 +170,12 @@ components:
           type: string
           description: Payload a ser reprocessado
           maxLength: 1000
-          example: '{
-            "nome": "John Doe",
-            "ponto_comercial": "Mercado boa vista",
-            "proposta": "crédito sem nenhuma taxa",
-            "data": "12/12/2024"
-          }'
+          example: "{}"
         status:
           type: string
           description: Status (char)
           maxLength: 10
-          example: Ativo
-        data_processamento:
-          type: string
-          format: date
-          description: Data de processamento
-          example: '2024-08-01'
+          example: PROCESSADO
         num_tentativas:
           type: integer
           description: Número de tentativas
@@ -231,12 +206,7 @@ components:
           type: string
           description: Payload a ser reprocessado
           maxLength: 1000
-          example: '{
-            "nome": "John Doe",
-            "ponto_comercial": "Mercado boa vista",
-            "proposta": "crédito sem nenhuma taxa",
-            "data": "12/12/2024"
-          }'
+          example: "{}"
         status:
           type: string
           description: Status (char)
@@ -244,7 +214,7 @@ components:
           example: Ativo
         data_processamento:
           type: string
-          format: date
+          format: date-time
           description: Data de processamento
           example: '2024-08-01'
         num_tentativas:

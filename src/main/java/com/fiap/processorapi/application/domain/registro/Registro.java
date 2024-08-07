@@ -1,10 +1,11 @@
 package com.fiap.processorapi.application.domain.registro;
 
 import com.fiap.processorapi.application.enums.Status;
+import lombok.Getter;
 
 import java.time.Instant;
 import java.util.Objects;
-
+@Getter
 public class Registro {
   private RegistroId id;
   private String idCredenciamento;
@@ -32,6 +33,12 @@ public class Registro {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.deletedAt = deletedAt;
+  }
+
+  public static Registro newRegistro(final String idCredenciamento, final String numeroDocumento, final String tipoPessoa,
+       final String payloadCredenciamento, final int numTentativas) {
+    return new Registro(RegistroId.generate(), idCredenciamento, numeroDocumento, tipoPessoa, Status.PENDENTE, payloadCredenciamento,
+      Instant.now(), numTentativas, Instant.now(), Instant.now(), null);
   }
 
   public int getStatusValue() {

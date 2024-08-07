@@ -2,7 +2,7 @@
 package com.fiap.processorapi.application.enums;
 
 public enum Status {
-    PENDENT(0),
+    PENDENTE(0),
     CONCLUIDO(1),
     ERR(2),
     CANCELADO(3);
