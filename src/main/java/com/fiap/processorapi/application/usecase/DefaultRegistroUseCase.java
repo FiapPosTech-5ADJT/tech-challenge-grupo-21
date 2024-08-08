@@ -14,7 +14,7 @@ public class DefaultRegistroUseCase extends RegistroCreateUseCase  {
 
   @Override
   public RegistroCreateOutput execute(RegistroCreateInput input) {
-    final var newRegistro = Registro.newRegistro(input.idCredenciamento(), input.numeroDocumento(), input.tipoPessoa(), input.payloadCredenciamento(), input.numTentativas());
+    final var newRegistro = Registro.newRegistro(input.idCredenciamento(), input.numeroDocumento(), input.tipoPessoa(), input.payloadCredenciamento());
     final var createRegistro = registroRepository.create(newRegistro);
     return  RegistroCreateOutput.from(createRegistro);
   }

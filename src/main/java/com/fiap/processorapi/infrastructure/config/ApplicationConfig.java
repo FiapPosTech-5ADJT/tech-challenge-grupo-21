@@ -3,8 +3,14 @@ package com.fiap.processorapi.infrastructure.config;
 import com.fiap.processorapi.application.repositories.RegistroRepository;
 import com.fiap.processorapi.application.usecase.DefaultRegistroUseCase;
 import com.fiap.processorapi.application.usecase.registro.create.RegistroCreateUseCase;
+import com.fiap.processorapi.application.usecase.registro.delete.DefaultRegistroDeleteUseCase;
+import com.fiap.processorapi.application.usecase.registro.delete.RegistroDeleteUseCase;
+import com.fiap.processorapi.application.usecase.registro.retrieve.get.DefaultRegistroGetByIdUseCase;
+import com.fiap.processorapi.application.usecase.registro.retrieve.get.RegistroGetByIdUseCase;
 import com.fiap.processorapi.application.usecase.registro.retrieve.list.DefaultListRegistroUseCase;
 import com.fiap.processorapi.application.usecase.registro.retrieve.list.RegistroListUseCase;
+import com.fiap.processorapi.application.usecase.registro.update.DefaultRegistroUpdateUseCase;
+import com.fiap.processorapi.application.usecase.registro.update.RegistroUpdateUseCase;
 import com.fiap.processorapi.infrastructure.persistence.respositories.RegistroJPARepository;
 import com.fiap.processorapi.infrastructure.respositories.RegistroRepositoryImpl;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +32,21 @@ public class ApplicationConfig {
   @Bean
   public RegistroListUseCase categoryListUseCase(final RegistroRepository registroRepository) {
     return new DefaultListRegistroUseCase(registroRepository);
+  }
+
+  @Bean
+  public RegistroGetByIdUseCase registroGetByIdUseCase(final RegistroRepository registroRepository) {
+    return new DefaultRegistroGetByIdUseCase(registroRepository);
+  }
+
+  @Bean
+  public RegistroUpdateUseCase registroUpdateUseCase(final RegistroRepository registroRepository) {
+    return new DefaultRegistroUpdateUseCase(registroRepository);
+  }
+
+  @Bean
+  public RegistroDeleteUseCase registroDeleteUseCase(final RegistroRepository registroRepository) {
+    return new DefaultRegistroDeleteUseCase(registroRepository);
   }
 
 

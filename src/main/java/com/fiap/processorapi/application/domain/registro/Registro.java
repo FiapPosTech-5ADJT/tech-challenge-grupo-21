@@ -36,9 +36,22 @@ public class Registro {
   }
 
   public static Registro newRegistro(final String idCredenciamento, final String numeroDocumento, final String tipoPessoa,
-       final String payloadCredenciamento, final int numTentativas) {
+       final String payloadCredenciamento) {
     return new Registro(RegistroId.generate(), idCredenciamento, numeroDocumento, tipoPessoa, Status.PENDENTE, payloadCredenciamento,
-      Instant.now(), numTentativas, Instant.now(), Instant.now(), null);
+      null, 5, Instant.now(), Instant.now(), null);
+  }
+
+  public Registro updateRegistro(final String idCredenciamento, final String numeroDocumento, final String tipoPessoa,
+      final Status status, final Instant dataProcessamento, final String payloadCredenciamento, final int numTentativas) {
+    this.idCredenciamento = idCredenciamento;
+    this.numeroDocumento = numeroDocumento;
+    this.tipoPessoa = tipoPessoa;
+    this.status = status;
+    this.dataProcessamento = dataProcessamento;
+    this.payloadCredenciamento = payloadCredenciamento;
+    this.numTentativas = numTentativas;
+    this.updatedAt = Instant.now();
+    return this;
   }
 
   public int getStatusValue() {
@@ -48,4 +61,8 @@ public class Registro {
   public void setStatusFromValue(int value) {
     this.status = Status.fromValue(value);
   }
+  public void setStatusEnum(Status status) {
+    this.status = status;
+  }
+
 }

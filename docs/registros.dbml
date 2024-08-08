@@ -1,11 +1,11 @@
 Table registros (
     id uuid [pk]
     id_credenciamento varchar(40) [not null]
-    numero_documento bigint [not null]
+    numero_documento varchar(20) [not null]
     tipo_pessoa char(1) [not null]
-    status char(10) [not null]
+    status int [not null]
     payload_credenciamento varchar [1000] [not null]
-    data_processamento date
+    data_processamento timestamp
     num_tentativas int [not null]
     created_at timestamp
     updated_at timestamp
@@ -14,9 +14,9 @@ Table registros (
 Table credenciamentos (
     id uuid [pk]
     id_credenciamento varchar(40) [not null]
-    numero_documento bigint [not null]
+    numero_documento varchar(40) [not null]
     tipo_pessoa char(1) [not null]
-    status char(10) [not null]
+    status int [not null]
     numero_ponto_venda bigint
     numero_solicitacao bigint [not null]
     data_credenciamento DATE [not null]

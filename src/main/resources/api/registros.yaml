@@ -132,9 +132,9 @@ components:
           maxLength: 40
           example: d5b2a1e4e7c3e0f8e7a2
         numero_documento:
-          type: integer
+          type: string
           description: Número do documento
-          example: 123456
+          example: '123456'
         tipo_pessoa:
           type: string
           description: Tipo de pessoa (char)
@@ -145,10 +145,6 @@ components:
           description: Payload a ser reprocessado
           maxLength: 1000
           example: "{}"
-        num_tentativas:
-          type: integer
-          description: Número de tentativas
-          example: 3
     AtualizaRegistro:
       type: object
       properties:
@@ -158,9 +154,9 @@ components:
           maxLength: 40
           example: d5b2a1e4e7c3e0f8e7a2
         numero_documento:
-          type: integer
+          type: string
           description: Número do documento
-          example: 123456
+          example: '123456'
         tipo_pessoa:
           type: string
           description: Tipo de pessoa (char)
@@ -171,6 +167,11 @@ components:
           description: Payload a ser reprocessado
           maxLength: 1000
           example: "{}"
+        data_processamento:
+          type: string
+          format: date-time
+          description: Data de processamento
+          example: '2024-08-01'
         status:
           type: string
           description: Status (char)
@@ -194,9 +195,9 @@ components:
           maxLength: 40
           example: d5b2a1e4e7c3e0f8e7a2
         numero_documento:
-          type: integer
+          type: string
           description: Número do documento
-          example: 123456
+          example: '123456'
         tipo_pessoa:
           type: string
           description: Tipo de pessoa (char)
