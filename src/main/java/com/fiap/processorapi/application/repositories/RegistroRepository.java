@@ -22,4 +22,6 @@ public interface RegistroRepository {
       void updateStatus(Registro aRegistro);
 
       void deleteById(RegistroId anId);
+
+      void updateNumTentativas(Registro registro);
 }

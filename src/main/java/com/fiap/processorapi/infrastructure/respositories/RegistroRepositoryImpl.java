@@ -54,6 +54,12 @@ public class RegistroRepositoryImpl implements RegistroRepository {
 
   @Transactional
   @Override
+  public void updateNumTentativas(Registro aRegistro) {
+    this.save(aRegistro);
+  }
+
+  @Transactional
+  @Override
   public void deleteById(RegistroId anId) {
     registroJPARepository.deleteById(anId.value());
   }

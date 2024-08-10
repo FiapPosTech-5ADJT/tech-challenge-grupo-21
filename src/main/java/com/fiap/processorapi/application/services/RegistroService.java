@@ -19,9 +19,20 @@ public class RegistroService {
     }
 
     public void atualizarStatusParaProcessado(Registro registro) {
-      registro.setStatusEnum(Status.CONCLUIDO);
-      registroRepository.updateStatus(registro);
+        atualizarRegistroStatus(Status.CONCLUIDO, registro);
     }
 
+    public void atualizarStatusParaExpirado(Registro registro) {
+        atualizarRegistroStatus(Status.CANCELADO, registro);
+    }
 
+    private void atualizarRegistroStatus(Status status, Registro registro) {
+        registro.setStatusEnum(status);
+        registroRepository.updateStatus(registro);
+    }
+
+    public void atualizarQntTentativas(Registro registro) {
+        registro.setNumTentativas(registro.getNumTentativas() + 1);
+        registroRepository.updateNumTentativas(registro);
+    }
 }

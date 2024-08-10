@@ -2,10 +2,12 @@ package com.fiap.processorapi.application.domain.registro;
 
 import com.fiap.processorapi.application.enums.Status;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.Objects;
 @Getter
+@Setter
 public class Registro {
   private RegistroId id;
   private String idCredenciamento;
