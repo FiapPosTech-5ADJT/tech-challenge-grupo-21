@@ -1,10 +1,11 @@
 package com.fiap.processorapi.infrastructure.persistence.entities;
 
+import com.fiap.processorapi.application.domain.contato.Contato;
+import com.fiap.processorapi.application.domain.contato.ContatoId;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @Entity
 @Table(name = "contatos")
@@ -18,7 +19,7 @@ public class ContatoJPAEntity {
 
     @Id
     @Column(name = "id", nullable = false, unique = true, length = 36)
-    private UUID id;
+    private String id;
 
     @Column(name = "telefone", length = 15)
     private String telefone;
@@ -37,4 +38,8 @@ public class ContatoJPAEntity {
 
     @Column(name = "deleted_at")
     private Instant deletedAt;
+
+  public Contato toContato() {
+    return new Contato(ContatoId.from(id), nome, email, telefone, createdAt, updatedAt, deletedAt);
+  }
 }

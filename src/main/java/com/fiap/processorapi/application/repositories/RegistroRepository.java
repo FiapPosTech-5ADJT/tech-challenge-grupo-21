@@ -4,6 +4,7 @@ import com.fiap.processorapi.application.domain.registro.Registro;
 import com.fiap.processorapi.application.domain.registro.RegistroId;
 import com.fiap.processorapi.application.enums.Status;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,4 +25,7 @@ public interface RegistroRepository {
       void deleteById(RegistroId anId);
 
       void updateNumTentativas(Registro registro);
+
+      List<Registro> findByStatusAndDataProcessamentoBetween(int status, Instant inicio, Instant fim);
+
 }

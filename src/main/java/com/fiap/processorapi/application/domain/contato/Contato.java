@@ -1,8 +1,12 @@
 package com.fiap.processorapi.application.domain.contato;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.Instant;
 import java.util.Objects;
-
+@Getter
+@Setter
 public class Contato {
   private ContatoId id;
   private String nome;
@@ -28,6 +32,14 @@ public class Contato {
     final var now = Instant.now();
     final var deletedAt = false ? null : now;
     return new Contato(id, nome, email, telefone, now, now, deletedAt);
+  }
+
+  public Contato updateContato(final String nome, final String email, final String telefone) {
+    this.nome = nome;
+    this.email = email;
+    this.telefone = telefone;
+    this.updatedAt = Instant.now();
+    return this;
   }
 
 }

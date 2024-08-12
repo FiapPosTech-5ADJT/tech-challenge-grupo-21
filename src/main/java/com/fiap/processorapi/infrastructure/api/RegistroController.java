@@ -22,47 +22,47 @@ import java.util.UUID;
 @RestController
 public class RegistroController implements RegistrosApi {
 
-  private final RegistroCreateUseCase registroCreateUseCase;
-  private final RegistroListUseCase registroListUseCase;
-  private final RegistroGetByIdUseCase registroGetByIdUseCase;
-  private final RegistroUpdateUseCase registroUpdateUseCase;
-  private final RegistroDeleteUseCase registroDeleteUseCase;
+    private final RegistroCreateUseCase registroCreateUseCase;
+    private final RegistroListUseCase registroListUseCase;
+    private final RegistroGetByIdUseCase registroGetByIdUseCase;
+    private final RegistroUpdateUseCase registroUpdateUseCase;
+    private final RegistroDeleteUseCase registroDeleteUseCase;
 
-  private final RegistroMapper registroMapper;
+    private final RegistroMapper registroMapper;
 
   @Override
   public ResponseEntity<RegistroDTO> criarRegistro(CriarRegistroDTO body) {
-    final var useCaseInput = registroMapper.fromDTO(body);
-    final var useCaseOutput = registroCreateUseCase.execute(useCaseInput);
-    return ResponseEntity.ok(registroMapper.toDTO(useCaseOutput));
+      final var useCaseInput = registroMapper.fromDTO(body);
+      final var useCaseOutput = registroCreateUseCase.execute(useCaseInput);
+      return ResponseEntity.ok(registroMapper.toDTO(useCaseOutput));
   }
 
   @Override
   public ResponseEntity<List<RegistroDTO>> listaRegistros() {
-    final var output = registroListUseCase.execute();
-    return ResponseEntity.ok(registroMapper.toDTO(output));
+      final var output = registroListUseCase.execute();
+      return ResponseEntity.ok(registroMapper.toDTO(output));
   }
 
   @Override
   public ResponseEntity<RegistroDTO> obterRegistro(UUID registroId) {
-    try {
-      final var output = registroMapper.toDTO(registroGetByIdUseCase.execute(registroId.toString()));
-      return ResponseEntity.ok(output);
-    } catch (NotFoundException e) {
-      return ResponseEntity.status(404).body(null);
+      try {
+          final var output = registroMapper.toDTO(registroGetByIdUseCase.execute(registroId.toString()));
+          return ResponseEntity.ok(output);
+      } catch (NotFoundException e) {
+          return ResponseEntity.status(404).body(null);
     }
   }
 
   @Override
   public ResponseEntity<RegistroDTO> atualizarRegistro(UUID registroId, AtualizaRegistroDTO body) {
-    final var input = registroMapper.fromDTO(registroId.toString(), body);
-    final var output = registroUpdateUseCase.execute(input);
-    return ResponseEntity.ok(registroMapper.toDTO(output));
+      final var input = registroMapper.fromDTO(registroId.toString(), body);
+      final var output = registroUpdateUseCase.execute(input);
+      return ResponseEntity.ok(registroMapper.toDTO(output));
   }
 
   @Override
   public ResponseEntity<Void> deletaRegistro(UUID registroId) {
-    registroDeleteUseCase.execute(registroId.toString());
-    return ResponseEntity.noContent().build();
+      registroDeleteUseCase.execute(registroId.toString());
+      return ResponseEntity.noContent().build();
   }
 }

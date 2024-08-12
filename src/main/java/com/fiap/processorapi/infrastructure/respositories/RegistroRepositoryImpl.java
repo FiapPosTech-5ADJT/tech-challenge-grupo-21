@@ -9,6 +9,7 @@ import com.fiap.processorapi.infrastructure.persistence.respositories.RegistroJP
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,13 @@ public class RegistroRepositoryImpl implements RegistroRepository {
   @Override
   public void updateNumTentativas(Registro aRegistro) {
     this.save(aRegistro);
+  }
+
+  @Override
+  public List<Registro> findByStatusAndDataProcessamentoBetween(int status, Instant inicio, Instant fim) {
+    return registroJPARepository.findByStatusAndDataProcessamentoBetween(status, inicio, fim).stream()
+      .map(RegistroJPAEntity::toRegistro)
+      .toList();
   }
 
   @Transactional

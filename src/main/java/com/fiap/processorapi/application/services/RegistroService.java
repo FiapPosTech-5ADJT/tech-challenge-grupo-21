@@ -6,6 +6,7 @@ import com.fiap.processorapi.application.repositories.RegistroRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -28,6 +29,7 @@ public class RegistroService {
 
     private void atualizarRegistroStatus(Status status, Registro registro) {
         registro.setStatusEnum(status);
+        registro.setDataProcessamento(Instant.now());
         registroRepository.updateStatus(registro);
     }
 

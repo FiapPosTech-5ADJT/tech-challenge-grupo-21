@@ -24,13 +24,13 @@ public class CredenciamentoJPAEntity {
     private String idCredenciamento;
 
     @Column(name = "numero_documento", nullable = false)
-    private Long numeroDocumento;
+    private String numeroDocumento;
 
     @Column(name = "tipo_pessoa", nullable = false, length = 1)
     private String tipoPessoa;
 
     @Column(name = "status", nullable = false, length = 10)
-    private String status;
+    private int status;
 
     @Column(name = "numero_ponto_venda")
     private Long numeroPontoVenda;

@@ -2,7 +2,7 @@ package com.fiap.processorapi.infrastructure.scheduling;
 
 import com.fiap.processorapi.application.domain.registro.Registro;
 import com.fiap.processorapi.application.services.RegistroService;
-import com.fiap.processorapi.infrastructure.externalApi.Suki;
+import com.fiap.processorapi.infrastructure.externalApi.Suc;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,16 +17,18 @@ public class RegistroScheduler {
 
     private final RegistroService registroService;
 
+    private final Suc suc;
+
     @Scheduled(fixedRate = 30000, initialDelay = 30000) // 5 minutos em milissegundos
     public void executarBuscaRegistrosPendentes() {
         var registrosPendentes = registroService.buscarRegistrosPendentes();
-        logger.info("Registros pendentes: {}", registrosPendentes);
+        logger.info("Registros pendentes: {}", registrosPendentes.size());
         for (Registro registro : registrosPendentes) {
-            if (registro.getNumTentativas() > 5) {
+            if (registro.getNumTentativas() >= 5) {
                 registroService.atualizarStatusParaExpirado(registro);
                 return;
             }
-            String retorno = this.sendSukiData(registro);
+            String retorno = this.sendSucData(registro);
             if ("Success".equals(retorno)) {
                 registroService.atualizarStatusParaProcessado(registro);
                 return;
@@ -35,9 +37,7 @@ public class RegistroScheduler {
             }
         }
     }
-
-    private String sendSukiData(final Registro registro) {
-        final Suki suki = new Suki();
-        return suki.sendSukiData(registro);
+    private String sendSucData(final Registro registro) {
+        return suc.sendSucData(registro);
     }
 }

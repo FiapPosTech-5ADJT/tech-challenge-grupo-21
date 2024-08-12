@@ -1,7 +1,11 @@
 package com.fiap.processorapi.infrastructure.config;
 
+import com.fiap.processorapi.application.repositories.ContatoRepository;
+import com.fiap.processorapi.application.repositories.CredenciamentoRepository;
 import com.fiap.processorapi.application.repositories.RegistroRepository;
 import com.fiap.processorapi.application.usecase.DefaultRegistroUseCase;
+import com.fiap.processorapi.application.usecase.contato.retrieve.list.ContatoListUseCase;
+import com.fiap.processorapi.application.usecase.contato.retrieve.list.DefaultListContatoUseCase;
 import com.fiap.processorapi.application.usecase.registro.create.RegistroCreateUseCase;
 import com.fiap.processorapi.application.usecase.registro.delete.DefaultRegistroDeleteUseCase;
 import com.fiap.processorapi.application.usecase.registro.delete.RegistroDeleteUseCase;
@@ -11,7 +15,11 @@ import com.fiap.processorapi.application.usecase.registro.retrieve.list.DefaultL
 import com.fiap.processorapi.application.usecase.registro.retrieve.list.RegistroListUseCase;
 import com.fiap.processorapi.application.usecase.registro.update.DefaultRegistroUpdateUseCase;
 import com.fiap.processorapi.application.usecase.registro.update.RegistroUpdateUseCase;
+import com.fiap.processorapi.infrastructure.persistence.respositories.ContatoJPARepository;
+import com.fiap.processorapi.infrastructure.persistence.respositories.CredenciamentoJPARepository;
 import com.fiap.processorapi.infrastructure.persistence.respositories.RegistroJPARepository;
+import com.fiap.processorapi.infrastructure.respositories.ContatoRepositoryImpl;
+import com.fiap.processorapi.infrastructure.respositories.CredenciamentoRepositoryImpl;
 import com.fiap.processorapi.infrastructure.respositories.RegistroRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,5 +57,19 @@ public class ApplicationConfig {
     return new DefaultRegistroDeleteUseCase(registroRepository);
   }
 
+  @Bean
+  public ContatoRepository contatoRepository(final ContatoJPARepository contatoJPARepository) {
+    return new ContatoRepositoryImpl(contatoJPARepository);
+  }
+
+  @Bean
+  public CredenciamentoRepository credenciamentoRepository(final CredenciamentoJPARepository credenciamentoJPARepository) {
+    return new CredenciamentoRepositoryImpl(credenciamentoJPARepository);
+  }
+
+  @Bean
+  public ContatoListUseCase contatoListUseCase(final ContatoRepository contatoRepository) {
+    return new DefaultListContatoUseCase(contatoRepository);
+  }
 
 }

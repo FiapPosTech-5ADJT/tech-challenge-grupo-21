@@ -30,7 +30,7 @@ public class RegistroJPAEntity {
     private String idCredenciamento;
 
     @Column(name = "numero_documento", nullable = false)
-    private Long numeroDocumento;
+    private String numeroDocumento;
 
     @Column(name = "tipo_pessoa", nullable = false, length = 1)
     private String tipoPessoa;
@@ -60,7 +60,7 @@ public class RegistroJPAEntity {
         return new RegistroJPAEntity(
                 registro.getId().value(),
                 registro.getIdCredenciamento(),
-                Long.valueOf(registro.getNumeroDocumento()),
+                registro.getNumeroDocumento(),
                 registro.getTipoPessoa(),
                 registro.getStatus().getValue(),
                 registro.getPayloadCredenciamento(),
@@ -76,7 +76,7 @@ public class RegistroJPAEntity {
         return new Registro(
                 RegistroId.from(id),
                 idCredenciamento,
-                String.valueOf(numeroDocumento),
+                numeroDocumento,
                 tipoPessoa,
                 Status.fromValue(status),
                 payloadCredenciamento,
