@@ -42,4 +42,15 @@ public class ContatoJPAEntity {
   public Contato toContato() {
     return new Contato(ContatoId.from(id), nome, email, telefone, createdAt, updatedAt, deletedAt);
   }
+
+  public static ContatoJPAEntity of(Contato contato) {
+    return new ContatoJPAEntity(
+            contato.getId().value(),
+            contato.getTelefone(),
+            contato.getNome(),
+            contato.getEmail(),
+            contato.getCreatedAt(),
+            contato.getUpdatedAt(),
+            contato.getDeletedAt());
+  }
 }
