@@ -40,12 +40,12 @@ public class RelatorioService {
       logger.info("Iniciando envio de relatório por email para status: {}", status);
       try {
         // Descomentar as linhas abaixo para obter relatorio do dia anterior
-        // Instant dataInicio = LocalDate.now().minusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant();
-        // Instant dataFim = LocalDate.now().minusDays(1).atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant();
+        Instant dataInicio = LocalDate.now().minusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant();
+        Instant dataFim = LocalDate.now().minusDays(1).atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant();
 
         // Descomentar as linhas abaixo para obter relatorio do dia atual
-        Instant dataInicio = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
-        Instant dataFim = LocalDate.now().atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant();
+        // Instant dataInicio = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
+        // Instant dataFim = LocalDate.now().atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant();
 
         String dataRelatorioFormatada = formatarDataRelatorio(dataInicio);
 

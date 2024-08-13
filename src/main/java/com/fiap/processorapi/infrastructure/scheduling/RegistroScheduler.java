@@ -19,7 +19,7 @@ public class RegistroScheduler {
 
     private final Suc suc;
 
-    @Scheduled(fixedRate = 30000, initialDelay = 30000) // 5 minutos em milissegundos
+    @Scheduled(fixedRate = 300000, initialDelay = 300000) // 5 minutos em milissegundos
     public void executarBuscaRegistrosPendentes() {
         var registrosPendentes = registroService.buscarRegistrosPendentes();
         logger.info("Registros pendentes: {}", registrosPendentes.size());

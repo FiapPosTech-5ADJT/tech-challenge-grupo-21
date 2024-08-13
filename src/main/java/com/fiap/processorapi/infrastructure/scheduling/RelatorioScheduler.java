@@ -21,8 +21,8 @@ public class RelatorioScheduler {
 
     private final RelatorioService relatorioService;
 
-    //@Scheduled(cron = "0 0 7 * * ?") // Todos os dias às 7 da manhã
-    @Scheduled(cron = "0 55 11 * * ?") // Todos os dias às 23:30
+    @Scheduled(cron = "0 0 7 * * ?") // Todos os dias às 7 da manhã
+    //@Scheduled(cron = "0 55 11 * * ?") // Data personalizada
     public void enviarRelatorioDiario() {
         Instant dataProcessamento = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
         try {
