@@ -1,8 +1,10 @@
 package com.fiap.processorapi.infrastructure.api;
 
+import com.fiap.processorapi.application.usecase.contato.create.ContatoCreateUseCase;
 import com.fiap.processorapi.application.usecase.contato.retrieve.list.ContatoListUseCase;
 import com.fiap.processorapi.contatos.api.ContatosApi;
 import com.fiap.processorapi.contatos.model.ContatoDTO;
+import com.fiap.processorapi.contatos.model.CriarContatoDTO;
 import com.fiap.processorapi.infrastructure.mappers.ContatoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.List;
 public class ContatoController implements ContatosApi {
 
   private final ContatoListUseCase contatoListUseCase;
+  private final ContatoCreateUseCase contatoCreateUseCase;
 
   private final ContatoMapper contatoMapper;
 
@@ -23,4 +26,12 @@ public class ContatoController implements ContatosApi {
       final var output = contatoListUseCase.execute();
       return ResponseEntity.ok(contatoMapper.toDTO(output));
   }
+
+  @Override
+  public ResponseEntity<ContatoDTO> criarContato(CriarContatoDTO body) {
+      final var useCaseInput = contatoMapper.fromDTO(body);
+      final var useCaseOutput = contatoCreateUseCase.execute(useCaseInput);
+      return ResponseEntity.ok(contatoMapper.toDTO(useCaseOutput));
+  }
+
 }

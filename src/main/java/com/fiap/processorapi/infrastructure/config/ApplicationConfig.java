@@ -4,6 +4,8 @@ import com.fiap.processorapi.application.repositories.ContatoRepository;
 import com.fiap.processorapi.application.repositories.CredenciamentoRepository;
 import com.fiap.processorapi.application.repositories.RegistroRepository;
 import com.fiap.processorapi.application.usecase.DefaultRegistroUseCase;
+import com.fiap.processorapi.application.usecase.contato.DefaultContatoUseCase;
+import com.fiap.processorapi.application.usecase.contato.create.ContatoCreateUseCase;
 import com.fiap.processorapi.application.usecase.contato.retrieve.list.ContatoListUseCase;
 import com.fiap.processorapi.application.usecase.contato.retrieve.list.DefaultListContatoUseCase;
 import com.fiap.processorapi.application.usecase.registro.create.RegistroCreateUseCase;
@@ -60,6 +62,11 @@ public class ApplicationConfig {
   @Bean
   public ContatoRepository contatoRepository(final ContatoJPARepository contatoJPARepository) {
     return new ContatoRepositoryImpl(contatoJPARepository);
+  }
+
+  @Bean
+  public ContatoCreateUseCase contatoCreateUseCase(final ContatoRepository contatoRepository) {
+    return new DefaultContatoUseCase(contatoRepository);
   }
 
   @Bean
