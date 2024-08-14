@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 public class ContatoRepositoryImpl implements ContatoRepository {
 
@@ -41,8 +43,9 @@ public class ContatoRepositoryImpl implements ContatoRepository {
     return contatoJPARepository.findAll().stream().map(ContatoJPAEntity::toContato).toList();
   }
 
+  @Transactional
   @Override
-  public void deleteById(ContatoId id) {
-
+  public void deleteById(ContatoId anId) {
+    contatoJPARepository.deleteById(anId.value());
   }
 }

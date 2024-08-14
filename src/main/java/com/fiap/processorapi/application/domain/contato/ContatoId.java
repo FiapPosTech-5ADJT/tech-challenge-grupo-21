@@ -1,6 +1,6 @@
 package com.fiap.processorapi.application.domain.contato;
 
-public record ContatoId( String value) {
+public record ContatoId(String value) {
 
   public ContatoId {
     if (value == null) {

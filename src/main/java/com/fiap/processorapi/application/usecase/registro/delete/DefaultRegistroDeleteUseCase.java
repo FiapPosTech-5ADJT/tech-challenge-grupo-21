@@ -12,7 +12,7 @@ public class DefaultRegistroDeleteUseCase extends RegistroDeleteUseCase {
     @Override
     public void execute(final String input) {
         final var registroId = RegistroId.from(input);
-      registroRepository.deleteById(registroId);
+        registroRepository.deleteById(registroId);
     }
 
 }

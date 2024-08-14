@@ -12,4 +12,6 @@ import java.util.UUID;
 public interface ContatoJPARepository extends JpaRepository<ContatoJPAEntity, UUID> {
 
   List<ContatoJPAEntity> findAll();
+
+  void deleteById(String value);
 }
