@@ -8,8 +8,12 @@ import com.fiap.processorapi.application.usecase.contato.DefaultContatoUseCase;
 import com.fiap.processorapi.application.usecase.contato.create.ContatoCreateUseCase;
 import com.fiap.processorapi.application.usecase.contato.delete.ContatoDeleteUseCase;
 import com.fiap.processorapi.application.usecase.contato.delete.DefaultContatoDeleteUseCase;
+import com.fiap.processorapi.application.usecase.contato.retrieve.get.ContatoGetByIdUseCase;
+import com.fiap.processorapi.application.usecase.contato.retrieve.get.DefaultContatoGetByIdUseCase;
 import com.fiap.processorapi.application.usecase.contato.retrieve.list.ContatoListUseCase;
 import com.fiap.processorapi.application.usecase.contato.retrieve.list.DefaultListContatoUseCase;
+import com.fiap.processorapi.application.usecase.contato.update.ContatoUpdateUseCase;
+import com.fiap.processorapi.application.usecase.contato.update.DefaultContatoUpdateUseCase;
 import com.fiap.processorapi.application.usecase.registro.create.RegistroCreateUseCase;
 import com.fiap.processorapi.application.usecase.registro.delete.DefaultRegistroDeleteUseCase;
 import com.fiap.processorapi.application.usecase.registro.delete.RegistroDeleteUseCase;
@@ -75,6 +79,17 @@ public class ApplicationConfig {
   public ContatoDeleteUseCase contatoDeleteUseCase(final ContatoRepository contatoRepository) {
     return new DefaultContatoDeleteUseCase(contatoRepository);
   }
+
+  @Bean
+  public ContatoGetByIdUseCase contatoGetByIdUseCase(final ContatoRepository contatoRepository) {
+    return new DefaultContatoGetByIdUseCase(contatoRepository);
+  }
+
+  @Bean
+  public ContatoUpdateUseCase contatoUpdateUseCase(final ContatoRepository contatoRepository) {
+    return new DefaultContatoUpdateUseCase(contatoRepository);
+  }
+
 
   @Bean
   public CredenciamentoRepository credenciamentoRepository(final CredenciamentoJPARepository credenciamentoJPARepository) {

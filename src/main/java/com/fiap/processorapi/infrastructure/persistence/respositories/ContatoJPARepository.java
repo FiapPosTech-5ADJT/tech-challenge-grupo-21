@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ContatoJPARepository extends JpaRepository<ContatoJPAEntity, UUID> {
+public interface ContatoJPARepository extends JpaRepository<ContatoJPAEntity, String> {
 
   List<ContatoJPAEntity> findAll();
 

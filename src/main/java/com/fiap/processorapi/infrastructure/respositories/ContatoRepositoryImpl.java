@@ -30,12 +30,13 @@ public class ContatoRepositoryImpl implements ContatoRepository {
 
   @Override
   public Contato update(Contato contato) {
-    return null;
+    return this.save(contato);
   }
 
   @Override
-  public Optional<Contato> findById(ContatoId id) {
-    return Optional.empty();
+  public Optional<Contato> findById(ContatoId anId) {
+    return contatoJPARepository.findById(anId.value()).map(ContatoJPAEntity::toContato);
+
   }
 
   @Override

@@ -1,5 +1,7 @@
 package com.fiap.processorapi.application.domain.contato;
 
+import java.util.UUID;
+
 public record ContatoId(String value) {
 
   public ContatoId {
@@ -9,12 +11,12 @@ public record ContatoId(String value) {
   }
 
   public static ContatoId generate() {
-    return new ContatoId(java.util.UUID.randomUUID().toString());
+    return new ContatoId(UUID.randomUUID().toString());
   }
 
   public static ContatoId from(final String value) {
     try {
-      return new ContatoId(java.util.UUID.fromString(value).toString());
+      return new ContatoId(UUID.fromString(value).toString());
     } catch (IllegalArgumentException e) {
       throw new IllegalArgumentException("Invalid contato id");
     }
