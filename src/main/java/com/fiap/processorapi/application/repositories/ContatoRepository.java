@@ -11,5 +11,5 @@ public interface ContatoRepository {
     Contato update(Contato contato);
     Optional<Contato> findById(ContatoId id);
     List<Contato> findAll();
-    void deleteById(ContatoId id);
+    void deleteById(ContatoId anId);
 }
